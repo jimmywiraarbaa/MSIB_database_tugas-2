@@ -1,0 +1,79 @@
+1.	Berapa jumlah pelanggan yang tahun lahirnya 1998
+jawab:
+MariaDB [sib_database]> SELECT COUNT(*) AS jumlah_pelanggan FROM pelanggan WHERE YEAR(tgl_lahir) = 1998;
++------------------+
+| jumlah_pelanggan |
++------------------+
+|                0 |
++------------------+
+1 row in set (0.001 sec)
+
+2.	Berapa jumlah pelanggan perempuan yang tempat lahirnya di Jakarta
+jawab:
+MariaDB [sib_database]> SELECT COUNT(*) AS jumlah_pelanggan_perempuan FROM pelanggan WHERE jk = 'P' AND tmp_lahir = 'Jakarta';
++----------------------------+
+| jumlah_pelanggan_perempuan |
++----------------------------+
+|                          3 |
++----------------------------+
+1 row in set (0.001 sec)
+
+3.	Berapa jumlah total stok semua produk yang harga jualnya dibawah 10rb
+jawab:
+MariaDB [sib_database]> SELECT SUM(stok) AS total_stok FROM produk WHERE harga_jual < 10000;
++------------+
+| total_stok |
++------------+
+|         79 |
++------------+
+1 row in set (0.000 sec)
+
+4.	Ada berapa produk yang mempunyai kode awal K
+jawab:
+MariaDB [sib_database]> SELECT COUNT(*) AS jumlah_produk_k FROM produk WHERE LEFT(kode, 1) = 'K';
++-----------------+
+| jumlah_produk_k |
++-----------------+
+|               1 |
++-----------------+
+1 row in set (0.002 sec)
+
+5.	Berapa harga jual rata-rata produk yang diatas 1jt
+jawab:
+MariaDB [sib_database]> SELECT AVG(harga_jual) AS rata_rata_harga_jual FROM produk WHERE harga_jual > 1000000;
++----------------------+
+| rata_rata_harga_jual |
++----------------------+
+|   31387733.333333332 |
++----------------------+
+1 row in set (0.001 sec)
+
+6.	Tampilkan jumlah stok yang paling besar
+jawab:
+MariaDB [sib_database]> SELECT MAX(stok) AS jumlah_stok_terbesar FROM produk;
++----------------------+
+| jumlah_stok_terbesar |
++----------------------+
+|                   53 |
++----------------------+
+1 row in set (0.001 sec)
+
+7.	Ada berapa produk yang stoknya kurang dari minimal stok
+jawab:
+MariaDB [sib_database]> SELECT COUNT(*) AS jumlah_produk_kurang_stok FROM produk WHERE stok < min_stok;
++---------------------------+
+| jumlah_produk_kurang_stok |
++---------------------------+
+|                         4 |
++---------------------------+
+1 row in set (0.000 sec)
+
+8.	Berapa total asset dari keseluruhan produk
+jawab:
+MariaDB [sib_database]> SELECT SUM(harga_beli * stok) AS total_asset FROM produk;
++-------------+
+| total_asset |
++-------------+
+|   480504000 |
++-------------+
+1 row in set (0.000 sec)
